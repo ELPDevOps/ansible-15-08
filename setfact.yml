@@ -1,0 +1,21 @@
+- name: Set Fact Example
+  hosts: localhost
+  vars:
+    pkg_name: httpd
+  tasks:
+    #- name: Set a variable
+     # set_fact:
+      #  pkg_name: httpd
+      
+    - name: Display the variable
+      debug:
+        var: pkg_name
+
+
+- hosts: localhost
+  tasks:
+    - name: install the pkg_get the var from previous playbook or above playbook
+      yum:
+        name: "{{ pkg_name }}"
+        state: present
+

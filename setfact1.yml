@@ -1,0 +1,16 @@
+---
+- name: Set Fact with Conditional
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: Check OS type
+      setup:
+      
+    - name: Set OS-specific variable
+      set_fact:
+        os_message: "{{ ansible_hostname }}"
+
+
+    - name: Display OS message
+      debug:
+        var: os_message

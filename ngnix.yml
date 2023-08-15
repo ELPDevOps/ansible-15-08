@@ -1,0 +1,23 @@
+---
+- name: Configure and Start Web Server
+  hosts: all
+  tasks:
+    - name: install the ngnix
+      yum:
+        name: nginx
+        state: latest
+
+    - name: Copy configuration file
+      copy:
+        src: /root/nginx.conf
+        dest: /etc/nginx.conf
+        remote_src: yes
+      delegate_to: localhost
+      notify: Reload Nginx
+
+
+  handlers:
+    - name: Reload Nginx
+      service:
+        name: nginx
+        state: restarted

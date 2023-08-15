@@ -1,0 +1,15 @@
+- hosts: localhost
+  vars:
+    users:
+      - username: alice
+        uid: 1001
+        groups: users,developers
+      - username: bob
+        uid: 1002
+        groups: users
+
+  tasks:
+    - name: Generate user configuration
+      template:
+        src: user.j2
+        dest: /tmp/user_config.yml

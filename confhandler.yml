@@ -1,0 +1,16 @@
+---
+- name: Manage Configuration and Service
+  hosts: localhost
+  tasks:
+    - name: Copy configuration file
+      copy:
+        src: /root/my_config.conf
+        dest: /etc/my_config.conf
+        remote_src: true
+      notify: Reload My Service
+
+  handlers:
+    - name: Reload My Service
+      systemd:
+        name: httpd
+        state: reloaded

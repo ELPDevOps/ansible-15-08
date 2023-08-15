@@ -1,0 +1,16 @@
+- hosts: localhost
+  vars:
+    users:
+      - name: john
+        age: 25
+        city: hyderabad
+      - name: jane
+        age: 30
+        city: chennai
+      - name: bob
+        age: 20
+        city: banglore
+  tasks:
+    - name: Get users over 25
+      debug:
+        var:   users | selectattr('age', 'gt', 25) | map(attribute='city') | list

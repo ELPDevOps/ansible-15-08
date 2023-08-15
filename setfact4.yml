@@ -1,0 +1,24 @@
+---
+- name: Set Complex Data
+  hosts: localhost
+  tasks:
+    - name: Set a dictionary
+      set_fact:
+        my_dict:
+          key1: value1
+          key2: value2
+      
+    - name: Set a list of items
+      set_fact:
+        my_list:
+          - item1
+    - name: Display complex data
+      debug:
+        var: my_dict
+          
+    
+      
+    - name: Display complex data
+      debug:
+        var: my_list
+

@@ -1,0 +1,5 @@
+{% for user in users %}
+- username: {{ user.username }}
+  uid: {{ user.uid }}
+  groups: {{ user.groups  }}
+{% endfor %}
