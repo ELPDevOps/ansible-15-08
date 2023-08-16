@@ -1,0 +1,13 @@
+---
+- name: Debug Regular Expression Match
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Use regex to match email-like string
+      debug:
+        var: email_match
+      vars:
+        input_email: Arjunrayewa03@gmail.com
+        regex_pattern: "^[a-zA-Z0-9]+[@]+[a-z]*[\\.][a-z]{2,3}$"
+        email_match: "{{ input_email | regex_search(regex_pattern) }}"
+
