@@ -15,20 +15,7 @@
         database: group
       register: out
 
-    - name: create groups
-      ansible.builtin.group:
-        name: "{{ item }}"
-        state: present
-      loop: "{{ user_groups.split(\n) }}"
-      ignore_errors: true
-      register: res
-      when:
-        - '"{{ item }}" not in ansible_facts.getent_group'
-
-    - name: setting fact for grps
-      set_fact:
-        grp_names: "{{ res['results'] | map(attribute='name') | join(', ') }}"
-
+   
     - name: Fetch available users
       getent:
         database: passwd
@@ -37,8 +24,7 @@
     - name: create user
       user:
         name: "{{ item }}"
-        group: "tomusers"
-        groups: "{{ grp_names }}"
+
         home: '/home/elp'
         state: present
       ignore_errors: true
