@@ -7,7 +7,7 @@
       debug:
         var: phone_number_match
       vars:
-        phone_number: +9112345670
+        phone_number: +911234567890
         regex_pattern: "^[+91]+[0-9]{10}$"
         phone_number_match: "{{ phone_number | regex_search(regex_pattern) }}"
 
